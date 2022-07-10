@@ -8,11 +8,7 @@ function ViewImageScreen(props) {
     <View style={styles.container}>
       <View style={styles.closeIcon}></View>
       <View style={styles.deleteIcon}></View>
-      <Image
-        resizeMode='contain'
-        style={styles.image}
-        source={require('../assets/chair.jpg')}
-      />
+      <Image style={styles.image} source={require('../assets/chair.jpg')} />
     </View>
   );
 }
@@ -41,8 +37,10 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   image: {
+    position: 'absolute',
+    bottom: 0,
     width: '100%',
-    height: '100%',
+    height: '80%',
   },
 });
 

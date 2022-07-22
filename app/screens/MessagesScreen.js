@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import ListItem from '../components/ListItem';
 import Screen from '../components/Screen';
@@ -13,8 +13,8 @@ const initialMessages = [
   },
   {
     id: 2,
-    title: 'T2',
-    description: 'D2',
+    title: 'Tjddhdkjhdkhdkjdhkdjhkdhdkjhkjdhdkjhddhkdhdjhdgsfsgfs2',
+    description: 'D2jkdsjsnsnsnsnsnsuehueheheuheuhenssnsmnsshbsshhshuejhejhesjhheshes',
     image: require('../assets/mosh.jpg'),
   },
   {
@@ -34,7 +34,7 @@ const MessagesScreen = ({}) => {
   };
 
   return (
-    <Screen>
+    <Screen style={styles.screen}>
       <FlatList
         data={messages}
         keyExtractor={(message) => message.id.toString()}
@@ -55,5 +55,11 @@ const MessagesScreen = ({}) => {
     </Screen>
   );
 };
+
+const styles = StyleSheet.create({
+  screen: {
+    padding: 15,
+  },
+});
 
 export default MessagesScreen;

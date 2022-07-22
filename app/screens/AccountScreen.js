@@ -1,10 +1,9 @@
 import { View, Text, StyleSheet, FlatList, ImageComponent } from 'react-native';
 import React from 'react';
 import Screen from '../components/Screen';
-import ListItem from '../components/ListItem';
+import { ListItem, ListItemSeparator } from '../components/lists';
 import colors from '../config/colors';
 import Icon from '../components/Icon';
-import ListItemSeparator from '../components/ListItemSeparator';
 
 const menuItems = [
   {
@@ -48,7 +47,10 @@ const AccountScreen = () => {
           ItemSeparatorComponent={ListItemSeparator}
         ></FlatList>
       </View>
-      <ListItem title='Log Out' IconComponent={<Icon name="logout" backgroundColor='#ffe66d'></Icon>}></ListItem>
+      <ListItem
+        title='Log Out'
+        IconComponent={<Icon name='logout' backgroundColor='#ffe66d'></Icon>}
+      ></ListItem>
     </Screen>
   );
 };

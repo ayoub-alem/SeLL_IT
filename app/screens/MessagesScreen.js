@@ -1,8 +1,7 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import ListItem from '../components/ListItem';
+import { ListItem, ListItemDeleteAction } from '../components/lists/ListItem';
 import Screen from '../components/Screen';
-import ListItemDeleteAction from '../components/ListItemDeleteAction';
 
 const initialMessages = [
   {
@@ -14,7 +13,8 @@ const initialMessages = [
   {
     id: 2,
     title: 'Tjddhdkjhdkhdkjdhkdjhkdhdkjhkjdhdkjhddhkdhdjhdgsfsgfs2',
-    description: 'D2jkdsjsnsnsnsnsnsuehueheheuheuhenssnsmnsshbsshhshuejhejhesjhheshes',
+    description:
+      'D2jkdsjsnsnsnsnsnsuehueheheuheuhenssnsmnsshbsshhshuejhejhesjhheshes',
     image: require('../assets/mosh.jpg'),
   },
   {

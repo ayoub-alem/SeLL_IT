@@ -40,6 +40,7 @@ const ListingEditScreen = () => {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
+        
         <AppFormField maxLength={255} name='title' placeholder='Title' />
         <AppFormField
           keyboardType='numeric'

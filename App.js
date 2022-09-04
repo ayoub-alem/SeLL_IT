@@ -16,7 +16,16 @@ import AppPicker from './app/components/AppPicker';
 import LoginScreen from './app/screens/LoginScreen';
 import ListingEditScreen from './app/screens/ListingEditScreen';
 import RegisterScreen from './app/screens/RegisterScreen';
+import ImageInput from './app/components/ImageInput';
 
 export default function App() {
-  return <RegisterScreen />;
+  const [imageUri, setImageUri] = useState(null);
+  return (
+    <Screen>
+      <ImageInput
+        imageUri={imageUri}
+        onChangeImage={(uri) => setImageUri(uri)}
+      />
+    </Screen>
+  );
 }

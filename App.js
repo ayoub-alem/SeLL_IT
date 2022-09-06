@@ -25,13 +25,5 @@ export default function App() {
   const handleRemove = (imageUri) =>
     setImagesUri(imageUris.filter((uri) => imageUri !== uri));
 
-  return (
-    <Screen>
-      <ImageInputList
-        imageUris={imageUris}
-        onAddImage={handleAdd}
-        onRemoveImage={handleRemove}
-      />
-    </Screen>
-  );
+  return <ListingEditScreen />;
 }

@@ -35,7 +35,7 @@ const ListingEditScreen = () => {
 
   return (
     <Screen style={styles.screen}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
         <AppForm
           initialValues={{
             title: '',
@@ -78,9 +78,12 @@ const ListingEditScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  screen: { paddingTop: 60, paddingHorizontal: 20 },
   submitButton: {
-    marginVertical: 40,
+    marginVertical: 20,
+  },
+  scroll: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
 });
 

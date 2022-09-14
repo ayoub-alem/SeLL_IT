@@ -20,6 +20,8 @@ import ImageInput from './app/components/ImageInput';
 import ImageInputList from './app/components/ImageInputList';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from './app/navigation/AuthNavigator';
+import AppNavigator from './app/navigation/AppNavigator';
+import navigationTheme from './app/navigation/navigationTheme';
 
 export default function App() {
   const [imageUris, setImagesUri] = useState([]);
@@ -28,8 +30,8 @@ export default function App() {
     setImagesUri(imageUris.filter((uri) => imageUri !== uri));
 
   return (
-    <NavigationContainer theme={navigationThe}>
-      <AuthNavigator></AuthNavigator>
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator></AppNavigator>
     </NavigationContainer>
   );
 }

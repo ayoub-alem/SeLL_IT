@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colors.white,
     alignItems: 'center',
-    paddingVertical: 10,
+    padding: 10,
   },
   detailsContainer: {
     flex: 1,

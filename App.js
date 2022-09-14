@@ -28,7 +28,7 @@ export default function App() {
     setImagesUri(imageUris.filter((uri) => imageUri !== uri));
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationThe}>
       <AuthNavigator></AuthNavigator>
     </NavigationContainer>
   );

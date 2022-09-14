@@ -18,6 +18,8 @@ import ListingEditScreen from './app/screens/ListingEditScreen';
 import RegisterScreen from './app/screens/RegisterScreen';
 import ImageInput from './app/components/ImageInput';
 import ImageInputList from './app/components/ImageInputList';
+import { NavigationContainer } from '@react-navigation/native';
+import AuthNavigator from './app/navigation/AuthNavigator';
 
 export default function App() {
   const [imageUris, setImagesUri] = useState([]);
@@ -25,5 +27,9 @@ export default function App() {
   const handleRemove = (imageUri) =>
     setImagesUri(imageUris.filter((uri) => imageUri !== uri));
 
-  return <ListingEditScreen />;
+  return (
+    <NavigationContainer>
+      <AuthNavigator></AuthNavigator>
+    </NavigationContainer>
+  );
 }

@@ -1,5 +1,5 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native';
 import React from 'react';
+import { FlatList, StyleSheet } from 'react-native';
 import Screen from '../components/Screen';
 import Card from '../components/Card';
 import colors from '../config/colors';

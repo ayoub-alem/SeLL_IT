@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, FlatList, ImageComponent } from 'react-native';
 import React from 'react';
+import { View, StyleSheet, FlatList, ImageComponent } from 'react-native';
 import Screen from '../components/Screen';
 import { ListItem, ListItemSeparator } from '../components/lists';
 import colors from '../config/colors';
@@ -12,6 +12,7 @@ const menuItems = [
       name: 'format-list-bulleted',
       backgroundColor: colors.primary,
     },
+    targetScreen: 'Listings',
   },
   {
     title: 'My Messages',
@@ -19,10 +20,11 @@ const menuItems = [
       name: 'email',
       backgroundColor: colors.secondary,
     },
+    targetScreen: 'Messages',
   },
 ];
 
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }) => {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -36,12 +38,16 @@ const AccountScreen = () => {
         <FlatList
           data={menuItems}
           keyExtractor={(menuItem) => menuItem.title}
-          renderItem={({ item: { title, icon } }) => (
+          renderItem={({ item }) => (
             <ListItem
-              title={title}
+              title={item.title}
               IconComponent={
-                <Icon name={icon.name} backgroundColor={icon.backgroundColor} />
+                <Icon
+                  name={item.icon.name}
+                  backgroundColor={item.icon.backgroundColor}
+                />
               }
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
           ItemSeparatorComponent={ListItemSeparator}

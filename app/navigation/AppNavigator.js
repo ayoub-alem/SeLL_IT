@@ -1,9 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AccountScreen from '../screens/AccountScreen';
 import ListingEditScreen from '../screens/ListingEditScreen';
-import ListingsScreen from '../screens/ListingsScreen';
 import FeedNavigator from './FeedNavigator';
+import AccountNavigator from './AccountNavigator';
 
 const Tab = createBottomTabNavigator();
 const myOptions = {
@@ -20,7 +19,11 @@ const AppNavigator = () => (
       component={ListingEditScreen}
       options={myOptions}
     />
-    <Tab.Screen name='Account' component={AccountScreen} options={myOptions} />
+    <Tab.Screen
+      name='Account'
+      component={AccountNavigator}
+      options={myOptions}
+    />
   </Tab.Navigator>
 );
 

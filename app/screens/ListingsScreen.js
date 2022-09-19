@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import listingsApi from '../api/listings';
 import { FlatList, StyleSheet, View } from 'react-native';
 import Screen from '../components/Screen';
@@ -7,23 +7,15 @@ import colors from '../config/colors';
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import ActivityIndicator from '../components/ActivityIndicator';
+import useApi from '../hooks/useApi';
 
 const ListingsScreen = ({ navigation }) => {
-  const [listings, setListings] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  const loadListings = async () => {
-    const res = await listingsApi.getListings();
-    if (!res.ok) {
-      setError(true);
-      return setLoading(false);
-    }
-
-    setError(false);
-    setLoading(false);
-    setListings(res.data);
-  };
+  const {
+    data: listings,
+    error,
+    loading,
+    request: loadListings,
+  } = useApi(listingsApi.getListings);
 
   useEffect(() => {
     loadListings();

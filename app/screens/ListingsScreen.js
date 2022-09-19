@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import listingsApi from '../api/listings';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import Screen from '../components/Screen';
 import Card from '../components/Card';
 import colors from '../config/colors';
-
-
+import AppText from '../components/AppText';
+import AppButton from '../components/AppButton';
+import ActivityIndicator from '../components/ActivityIndicator';
 
 const ListingsScreen = ({ navigation }) => {
   const [listings, setListings] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const loadListings = async () => {
-    const { data } = await listingsApi.getListings();
-    setListings(data);
+    const res = await listingsApi.getListings();
+    if (!res.ok) {
+      setError(true);
+      return setLoading(false);
+    }
+
+    setError(false);
+    setLoading(false);
+    setListings(res.data);
   };
 
   useEffect(() => {
@@ -19,7 +30,17 @@ const ListingsScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <Screen>
+    <Screen style={styles.screen}>
+      {error && (
+        <View style={styles.errorContainer}>
+          <AppText style={{ textAlign: 'center' }}>
+            Couldn't retrieve the listing
+          </AppText>
+          <AppButton onPress={() => console.log('pressed')} title='Retry' />
+        </View>
+      )}
+
+      {<ActivityIndicator visible={loading} />}
       <FlatList
         style={styles.flatList}
         data={listings}
@@ -42,6 +63,12 @@ const styles = StyleSheet.create({
   flatList: {
     backgroundColor: colors.light,
     padding: 20,
+  },
+  errorContainer: {
+    backgroundColor: colors.light,
+  },
+  screen: {
+    backgroundColor: colors.light,
   },
 });
 

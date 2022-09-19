@@ -34,24 +34,30 @@ const categories = [
 
 const ListingEditScreen = () => {
   const location = useLocation();
-  const [uploadVisible, setuploadVisible] = useState(false);
+  const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const handleSubmit = async (listing) => {
-    setuploadVisible(true);
+    setProgress(0);
+    setUploadVisible(true);
     const response = await listingsApi.addListing(
       { ...listing, location },
       (progress) => setProgress(progress)
     );
-    setuploadVisible(false);
 
-    if (!response.ok) return alert('Could not save the listing');
-    alert('Success');
+    if (!response.ok) {
+      setUploadVisible(false);
+      return alert('Could not save the listing');
+    }
   };
 
   return (
     <Screen style={styles.screen}>
-      <UploadScreen progress={progress} visible={uploadVisible} />
+      <UploadScreen
+        onDone={() => setUploadVisible(false)}
+        progress={progress}
+        visible={uploadVisible}
+      />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
         <AppForm
           initialValues={{

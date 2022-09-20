@@ -23,7 +23,7 @@ const ImageInputList = ({ imageUris = [], onRemoveImage, onAddImage }) => {
               />
             </View>
           ))}
-          {imageUris.length < 4 && (
+          {imageUris.length < 3 && (
             <ImageInput onChangeImage={(uri) => onAddImage(uri)} />
           )}
         </View>

@@ -22,6 +22,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import AppNavigator from './app/navigation/AppNavigator';
 import navigationTheme from './app/navigation/navigationTheme';
+import OfflineNotice from './app/components/OfflineNotice';
+import AppText from './app/components/AppText';
+import Constants from 'expo-constants';
 
 export default function App() {
   const [imageUris, setImagesUri] = useState([]);
@@ -30,8 +33,11 @@ export default function App() {
     setImagesUri(imageUris.filter((uri) => imageUri !== uri));
 
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AppNavigator></AppNavigator>
-    </NavigationContainer>
+    <>
+      <OfflineNotice />
+      <NavigationContainer theme={navigationTheme}>
+        <AppNavigator></AppNavigator>
+      </NavigationContainer>
+    </>
   );
 }

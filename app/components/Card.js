@@ -7,7 +7,7 @@ const Card = ({ title, subTitle, imageUrl, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
-        <Image source={{ uri: imageUrl }} style={styles.image}></Image>
+        <Image progressiveRenderingEnabled source={{ uri: imageUrl }} style={styles.image}></Image>
         <View style={styles.detailsContainer}>
           <AppText numberOfLines={1} style={styles.title}>
             {title}

@@ -25,19 +25,17 @@ import navigationTheme from './app/navigation/navigationTheme';
 import OfflineNotice from './app/components/OfflineNotice';
 import AppText from './app/components/AppText';
 import Constants from 'expo-constants';
+import AuthContext from './app/auth/context';
 
 export default function App() {
-  const [imageUris, setImagesUri] = useState([]);
-  const handleAdd = (uri) => setImagesUri([...imageUris, uri]);
-  const handleRemove = (imageUri) =>
-    setImagesUri(imageUris.filter((uri) => imageUri !== uri));
+  const [user, setUser] = useState();
 
   return (
-    <>
+    <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        <AppNavigator></AppNavigator>
+        {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
-    </>
+    </AuthContext.Provider>
   );
 }

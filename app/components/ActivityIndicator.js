@@ -9,7 +9,7 @@ const ActivityIndicator = ({ visible }) => {
       <LottieView
         style={styles.loadingAnimation}
         autoPlay
-        source={require('../assets/animations/98432-loading.json')}
+        source={require('../assets/animations/lf30_editor_6wue0iqa.json')}
       />
     </View>
   );

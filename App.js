@@ -28,19 +28,25 @@ import Constants from 'expo-constants';
 import AuthContext from './app/auth/context';
 import authStorage from './app/auth/storage';
 import jwtDecode from 'jwt-decode';
+import * as SplashScreen from 'expo-splash-screen';
 
 export default function App() {
-  const [user, setUser] = useState();
+  SplashScreen.preventAutoHideAsync();
+  const [user, setUser] = useState(null);
+  const [isReady, setIsReady] = useState(false);
 
   const restoreToken = async () => {
     const token = await authStorage.getToken();
-    if (!token) return;
-    setUser(jwtDecode(token));
+    if (token) setUser(jwtDecode(token));
+    setIsReady(true);
+    await SplashScreen.hideAsync();
   };
+
   useEffect(() => {
     restoreToken();
   }, []);
 
+  if (!isReady) return null;
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />

@@ -31,8 +31,7 @@ const ListingsScreen = ({ navigation }) => {
           <AppButton onPress={loadListings} title='Retry' />
         </View>
       )}
-
-      {<ActivityIndicator visible={loading} />}
+      <ActivityIndicator visible={loading} />
       {!loading && (
         <FlatList
           style={styles.flatList}

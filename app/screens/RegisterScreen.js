@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import * as Yup from 'yup';
 
 import Screen from '../components/Screen';
-import { AppForm, AppFormField, SubmitButton } from '../components/forms';
+import {
+  AppForm,
+  AppFormField,
+  ErrorMessage,
+  SubmitButton,
+} from '../components/forms';
+import auth from '../api/auth';
+import useAuth from '../auth/useAuth';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
@@ -12,14 +19,26 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterScreen = () => {
+  const [error, setError] = useState('');
+  const { logIn } = useAuth();
+
+  const handleRegister = async (userInfo) => {
+    const result = await auth.register(userInfo);
+    if (result.ok) {
+      setError('');
+      logIn(result.headers['x-auth-token']);
+    } else setError(result.data.error);
+  };
+
   return (
     <Screen style={styles.container}>
       <AppForm
         initialValues={{ name: '', email: '', password: '' }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => handleRegister(values)}
         validationSchema={validationSchema}
         styles={styles.appForm}
       >
+        <ErrorMessage error={error} visible={error} />
         <AppFormField
           autoCorrect={false}
           icon='account'

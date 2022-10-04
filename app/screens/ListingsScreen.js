@@ -22,33 +22,35 @@ const ListingsScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <Screen style={styles.screen}>
-      {error && (
-        <View style={styles.errorContainer}>
-          <AppText style={{ textAlign: 'center' }}>
-            Couldn't retrieve the listing
-          </AppText>
-          <AppButton onPress={loadListings} title='Retry' />
-        </View>
-      )}
+    <>
       <ActivityIndicator visible={loading} />
-      {!loading && (
-        <FlatList
-          style={styles.flatList}
-          data={listings}
-          keyExtractor={(listing) => listing.id}
-          renderItem={({ item }) => (
-            <Card
-              title={item.title}
-              subTitle={'$' + item.price}
-              imageUrl={item.images[0].url}
-              onPress={() => navigation.navigate('ListingDetails', item)}
-            ></Card>
-          )}
-          showsVerticalScrollIndicator={false}
-        />
-      )}
-    </Screen>
+      <Screen style={styles.screen}>
+        {error && (
+          <View style={styles.errorContainer}>
+            <AppText style={{ textAlign: 'center' }}>
+              Couldn't retrieve the listing
+            </AppText>
+            <AppButton onPress={loadListings} title='Retry' />
+          </View>
+        )}
+        {!loading && (
+          <FlatList
+            style={styles.flatList}
+            data={listings}
+            keyExtractor={(listing) => listing.id}
+            renderItem={({ item }) => (
+              <Card
+                title={item.title}
+                subTitle={'$' + item.price}
+                imageUrl={item.images[0].url}
+                onPress={() => navigation.navigate('ListingDetails', item)}
+              ></Card>
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
+      </Screen>
+    </>
   );
 };
 

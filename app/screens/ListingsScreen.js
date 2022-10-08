@@ -57,7 +57,8 @@ const ListingsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   flatList: {
     backgroundColor: colors.light,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
   },
   errorContainer: {
     backgroundColor: colors.light,

@@ -13,8 +13,10 @@ Notifications.setNotificationHandler({
 export default useNotifications = (notificationListener) => {
   useEffect(() => {
     registerForPushNotifications();
-
-    Notifications.addNotificationResponseReceivedListener(notificationListener);
+    if (notificationListener)
+      Notifications.addNotificationResponseReceivedListener(
+        notificationListener
+      );
   }, []);
 
   const registerForPushNotifications = async () => {

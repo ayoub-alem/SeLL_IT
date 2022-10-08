@@ -23,6 +23,7 @@ import OfflineNotice from './app/components/OfflineNotice';
 import AuthContext from './app/auth/context';
 import authStorage from './app/auth/storage';
 import * as SplashScreen from 'expo-splash-screen';
+import navigate from './app/navigation/rootNavigation';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -44,7 +45,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
-      <NavigationContainer theme={navigationTheme}>
+      <NavigationContainer ref={navigate.navigationRef} theme={navigationTheme}>
         {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
